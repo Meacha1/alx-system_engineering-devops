@@ -1,7 +1,6 @@
-#!/bin/bash
-#prints "Best school" 10 times
-i=0
-while [ $i -lt 10 ]; do
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times
+for _ in {1..10}
+do
 	echo "Best School"
-	let i=i+1
 done
