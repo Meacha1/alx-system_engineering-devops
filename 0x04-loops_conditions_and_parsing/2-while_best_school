@@ -1,5 +1,5 @@
 #!/bin/bash
-#prints "Best school" 10 times
+# prints "Best school" 10 times
 i=0
 while [ $i -lt 10 ]
 do
