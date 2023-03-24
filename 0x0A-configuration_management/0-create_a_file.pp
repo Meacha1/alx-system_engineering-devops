@@ -1,3 +1,4 @@
+# create a file in /tmp with a name school
 $file_content = 'I love Puppet'
 
 file { '/tmp/school':
