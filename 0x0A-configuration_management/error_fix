@@ -1,0 +1,2 @@
+$url = 'http://example.com?param=value'
+$escaped_url = URI.escape($url)

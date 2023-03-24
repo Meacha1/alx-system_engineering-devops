@@ -1,7 +1,9 @@
+$file_content = 'I love Puppet'
+
 file { '/tmp/school':
-  ensure  => 'file',
+  ensure  => file,
   mode    => '0744',
   owner   => 'www-data',
   group   => 'www-data',
-  content => 'I love puppet'
+  content => inline_template("<%= CGI.escape(@file_content) %>"),
 }
