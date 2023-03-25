@@ -1,0 +1,38 @@
+# change key
+file { '/root/.ssh/school':
+  ensure  => 'file',
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0600',
+  content => 'PuTTY-User-Key-File-3: ssh-rsa
+Encryption: aes256-cbc
+Comment: rsa-key-20230126
+Public-Lines: 6
+AAAAB3NzaC1yc2EAAAADAQABAAABAQCPOwMEsBYG13DvRECprAnA/uguyQ/qEDIq
+NzcJwcS/EReGEEFAnlZ86sD9bRLcQKEfIag/7n2ZTkTmQeLn0pLgLiJNgKtue/HP
+LG8dw5tzL0hPKSDLazLej/S/o7FqEZvQFUHyoBM8t7Xe8H8bLWKZNt77l/8Jyvl3
+SyOasiFTFN8zLSzjwiywoi+756UljqMWE82S1JGzv73la8+sLXMmNlRYEvovT9Qe
+yx0P+mGN40DBkXBoa7MdTDQgGt6lfatDjhxhX8JExzX0ZhQoBWC+gltzfuP1pZVR
+qTUkpP44VkHMTbaLs0i0s8BELIa2ffmQLFvGdJSJcUDg3vZbwg0P
+Key-Derivation: Argon2id
+Argon2-Memory: 8192
+Argon2-Passes: 13
+Argon2-Parallelism: 1
+Argon2-Salt: e7796dca98874f0cfa93b1fbf63230eb
+Private-Lines: 14
+ilOU60JKhGRfrSALni/iNPIcbOpNcnudvU5Jpb7gk82SE0PF+K7zUWVIZXU0ivGF
+MgpR8ARfAd4TIx83Enxu11dl4B/46TT79dtOikolH9o3hPi7wHUzBpTe75syWWS3
+nhlSgVSojFZl06wk0kA15sxcQTdTEi0deLhpJAstRG/5PL+3ehR7uTTBAZu6nWuo
+bnEqk0ZMaShr81m4LfrhlNdAu2CXhYxvq1B032Vmw0DpykCFYrZ/wambupKuuCFW
+1tbqlGI4DEw8IDS8YrV4WhuEuzKx7YPefcLHegs9CoSqLkW1SVlsR/mq87uA6i+E
+6NfXcYshQP1iDMxtY5SKMOh+QEtZafYpc4UKyZFCmWXW9ZR0RrB0Wc9ZylNgJUQX
+EwLpe00XXZD6g4DwjWxtvN0VXGCQygXP6zKl4VoFJ7cnaz1HUYm/hAfoZMkgsn1E
+Ut3xwY0NSwDoUUskapWfQmWUzfU1xMo0gocYYf3h4nrBhqL8Wbtwdc2MRKnuqeGK
+MXmuRSbVM0YheWqyKrX8ANSKkimhgWZKQitcHMqGKNztYl5faqOQifjL0soOJo9I
+mQPu186T8LnYKmtGqHq5XEEstQqtP4daEfXlzkU22OAIcfAbLWa6yhuJh7uv5Eun
++gagl7YZudBG4Gakq4Iy2SwkbRFi5rFRE7wC2Nf168w+Uwx5lUc4IRkuS6itVzCg
+cWNVJ7OAlXb+hYCCumCm86IDCvLurzybyoeHEhMnf9pJ5X5viRM6NvO59WuFTbDQ
+TqNWU0koy2gyRAwS4irO/Qi5khbJBibqpI375AjudLhpguSTFbKZ7Y2PaibVeFHV
+NL/R7z1V+dNr2zEWf04clKgftW4iA1PLVywGRMnpyTSi5NXbJ+zqUDAs3NPfTRqr
+Private-MAC: 4f7e0a393b5d59389ad54aabf0634068178986951403b681e0b9cfd2baf5b262',
+}
