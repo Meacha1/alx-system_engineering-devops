@@ -1,31 +1,12 @@
 #!/usr/bin/env bash
-# Install nginx
+# This script configures the nginx server so that /redirect_me is redirecting to
+# another page.
+
 sudo apt update
 sudo apt install nginx -y
-
-# Configure nginx to listen on port 80
-sudo sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
-
-# Configure nginx to return "Hello World!" at root /
-echo "Hello World!" | sudo tee /var/www/html/index.html
-
-# Configure nginx to redirect /redirect_me to another page with 301 Moved Permanently
-sudo sh -c "echo '
-server {
-    listen 80;
-    server_name _;
-
-    location /redirect_me {
-        return 301 http://example.com/;
-    }
-
-}' > /etc/nginx/sites-available/redirect_me"
-
-sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/redirect_me
-
-# Restart nginx
-if [ -x "$(command -v systemctl)" ]; then
-    sudo systemctl restart nginx
-else
-    sudo service nginx restart
-fi
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw enable
+echo 'Holberton School' | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
+sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sudo service nginx restart
