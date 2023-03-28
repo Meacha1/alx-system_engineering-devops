@@ -6,7 +6,7 @@ apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 
 # Create a new index.html file that will be used over the default index.nginx-debian.html
-echo "Holberton School" >> /var/www/html/index.html
+echo "Hello World!" >> /var/www/html/index.html
 
 #Give the user  ownership to website files
 chown -R $USER:$USER /var/www/html
