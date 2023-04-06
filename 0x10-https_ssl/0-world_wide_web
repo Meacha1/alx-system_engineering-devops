@@ -1,30 +1,18 @@
 #!/usr/bin/env bash
-#Configure your domain zone so that the subdomain www points to your load-balancer IP (lb-01)
-function get_dns_record {
-    local sub_domain=$1
-    local dns_server=$2
-    dig +short $sub_domain $dns_server | awk '{print $1}'
+# shellcheck disable=SC2086
+# display information about subdomains
+
+display_info ()
+{
+    domain="$1"
+    subdomain="$2"
+    dig "$subdomain.$domain" | awk '/ANSWER SECTION:/{getline; printf "The subdomain %s is a %s record and points to %s\n", var, $4, $5}' var="$subdomain"
 }
 
-function audit_subdomain {
-    local sub_domain=$1
-    local domain=$2
-    local record_type=$3
-    local dns_server=$4
-    local destination=$(get_dns_record $sub_domain.$domain $dns_server)
-    echo "The subdomain $sub_domain is a $record_type record and points to $destination"
-}
-
-domain=$1
-sub_domain=$2
-dns_server="8.8.8.8"
-
-if [ -z $sub_domain ]
-then
-    audit_subdomain "www" $domain "CNAME" $dns_server
-    audit_subdomain "lb-01" $domain "A" $dns_server
-    audit_subdomain "web-01" $domain "A" $dns_server
-    audit_subdomain "web-02" $domain "A" $dns_server
-else
-    audit_subdomain $sub_domain $domain "A/CNAME" $dns_server
-fi
+for subdomain in "www" "lb-01" "web-01" "web-02"
+do
+    if [ -z "$2" ] || [ "$2" == "$subdomain" ] ;
+    then
+	display_info "$1" "$subdomain"
+    fi
+done
