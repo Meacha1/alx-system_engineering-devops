@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-#Bash script to install and configure Nginx on Ubuntu to listen on port 80
-sudo apt update
-sudo apt install nginx
-sudo systemctl start nginx
-sudo sed -i '/^http {/a \    server {\n        listen 80;\n        server_name _;\n        location / {\n            root /var/www/html;\n            index index.html;\n        }\n    }' /etc/nginx/nginx.conf
-sudo ufw allow 80/tcp
+# script to link sites-enabled to sites-available and restart nginx
+
+sudo rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx start
