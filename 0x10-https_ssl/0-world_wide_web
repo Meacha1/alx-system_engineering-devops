@@ -9,7 +9,7 @@ display_info ()
     dig "$subdomain.$domain" | awk '/ANSWER SECTION:/{getline; printf "The subdomain %s is a %s record and points to %s\n", var, $4, $5}' var="$subdomain"
 }
 
-for subdomain in "www" "52.91.135.82" "54.89.117.70" "34.207.61.225"
+for subdomain in "www" "120739-lb-01" "120739-web-01" "120739-web-02"
 do
     if [ -z "$2" ] || [ "$2" == "$subdomain" ] ;
     then
