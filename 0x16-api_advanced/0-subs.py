@@ -8,9 +8,9 @@ def number_of_subscribers(subreddit):
     import requests
 
     my_request = requests.get("https://www.reddit.com/r/{}/about.json"
-                            .format(subreddit),
-                            headers={"User-Agent": "My-User-Agent"},
-                            allow_redirects=False)
+                              .format(subreddit),
+                              headers={"User-Agent": "My-User-Agent"},
+                              allow_redirects=False)
     if my_request.status_code >= 300:
         return 0
     data = my_request.json()
