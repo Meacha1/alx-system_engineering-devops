@@ -2,21 +2,24 @@
 ''' Module 3'''
 
 
-def recurse(subreddit, hot_list=[], after=None):
-    """Recursively queries the Reddit API and returns a list
-    containing the titles of all hot articles for a given subreddit"""
+def recurse(subreddit, hot_list=[], count=0, after=None):
+    """Queries the Reddit API and returns all hot posts
+    of the subreddit"""
     import requests
-    headers = {"User-Agent": "Python Reddit API Script"}
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?after={after}"
-    response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code == 200:
-        data = response.json()["data"]
-        posts = data["children"]
-        after = data["after"]
-        for post in posts:
-            hot_list.append(post["data"]["title"])
-        if after is not None:
-            recurse(subreddit, hot_list, after)
-        return hot_list
-    else:
+
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    params = {"count": count, "after": after}
+    headers = {"User-Agent": "My-User-Agent"}
+
+    response = requests.get(url, params=params, headers=headers, allow_redirects=False)
+
+    if response.status_code != 200:
         return None
+
+    data = response.json()["data"]
+    hot_list += [post["data"]["title"] for post in data["children"]]
+
+    if data["after"] is None:
+        return hot_list
+
+    return recurse(subreddit, hot_list, count=count+1, after=data["after"])
