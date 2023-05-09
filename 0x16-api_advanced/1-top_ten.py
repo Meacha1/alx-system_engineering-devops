@@ -1,18 +1,18 @@
 #!/usr/bin/python3
-''' Module 2 '''
+"""Module 0"""
 
-
-import requests
 
 def top_ten(subreddit):
-    """Queries the Reddit API and prints the top 10 hot posts
-    of the subreddit"""
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
-    headers = {"User-Agent": "Python Reddit API Script"}
-    response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code >= 300:
+    """Queries the Reddit API and returns the number of subscribers
+    to the subreddit"""
+    import requests
+
+    my_request = requests.get("https://www.reddit.com/r/{}/about.json"
+                              .format(subreddit),
+                              headers={"User-Agent": "My-User-Agent"},
+                              allow_redirects=False)
+    if my_request.status_code >= 300:
         print('None')
-    else:
-        data = response.json()["data"]["children"]
-        for post in data:
-            print(post["data"]["title"])
+    data = my_request.json()["data"]["children"]
+    for post in data:
+        print(post["data"]["title"])
