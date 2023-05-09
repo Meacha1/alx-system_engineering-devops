@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' Module 3'''
+"""Module for task recursion"""
 
 
 def recurse(subreddit, hot_list=[], count=0, after=None):
@@ -7,19 +7,22 @@ def recurse(subreddit, hot_list=[], count=0, after=None):
     of the subreddit"""
     import requests
 
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    params = {"count": count, "after": after}
-    headers = {"User-Agent": "My-User-Agent"}
-
-    response = requests.get(url, params=params, headers=headers, allow_redirects=False)
-
-    if response.status_code != 200:
+    my_request = requests.get("https://www.reddit.com/r/{}/hot.json"
+                            .format(subreddit),
+                            params={"count": count, "after": after},
+                            headers={"User-Agent": "My-User-Agent"},
+                            allow_redirects=False)
+    if my_request.status_code >= 400:
         return None
 
-    data = response.json()["data"]
-    hot_list += [post["data"]["title"] for post in data["children"]]
+    hot_l = hot_list + [child.get("data").get("title")
+                        for child in my_request.json()
+                        .get("data")
+                        .get("children")]
 
-    if data["after"] is None:
-        return hot_list
+    info = my_request.json()
+    if not info.get("data").get("after"):
+        return hot_l
 
-    return recurse(subreddit, hot_list, count=count+1, after=data["after"])
+    return recurse(subreddit, hot_l, info.get("data").get("count"),
+                   info.get("data").get("after"))
