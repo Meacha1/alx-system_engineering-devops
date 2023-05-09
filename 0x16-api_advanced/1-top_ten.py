@@ -13,6 +13,7 @@ def top_ten(subreddit):
                               allow_redirects=False)
     if my_request.status_code >= 300:
         print('None')
-    data = my_request.json()["data"]["children"]
-    for post in data:
-        print(post["data"]["title"])
+    else:
+        data = my_request.json()["data"]["children"]
+        for post in data:
+            print(post["data"]["title"])
