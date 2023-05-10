@@ -1,4 +1,5 @@
-#fix Apache 500 error by fixing typo in wordpress
+#This Puppet manifest fixes a typo in the wp-settings.php file of a WordPress installation.
+
 file { '/var/www/html/wp-settings.php':
   ensure  => 'file',
   owner   => 'www-data',
