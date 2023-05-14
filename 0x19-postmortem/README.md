@@ -9,7 +9,7 @@ Timeline
     •	10:05 AM EST: An engineer investigated the issue and determined that the website was crashing due to a bug in the Nginx   configuration file.
     •	10:10 AM EST: The engineer made a change to the Nginx configuration file and restarted the server.
     •	10:30 AM EST: The website was restored and users were able to access it again.
-    Root Cause and Resolution
+Root Cause and Resolution
 The root cause of the issue was a bug in the Nginx configuration file. The bug caused the server to crash when it tried to load the configuration file. The engineer fixed the bug by changing the configuration file and restarting the server.
 Corrective and Preventative Measures
 To prevent this issue from happening again, we will take the following corrective and preventative measures:
