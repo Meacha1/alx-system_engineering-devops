@@ -1,15 +1,11 @@
-file { '/etc/nginx/nginx.conf':
-  ensure  => file,
-  content => template('your_module/nginx.conf.erb'),
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-}
+# Increase the ULIMIT of the default file
+exec { 'fix--for-nginx':
+  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/'
+} ->
 
-service { 'nginx':
-  ensure    => running,
-  enable    => true,
-  hasstatus => true,
-  restart   => '/usr/sbin/service nginx reload',
-  subscribe => File['/etc/nginx/nginx.conf'],
+# Restart Nginx
+exec { 'nginx-restart':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
